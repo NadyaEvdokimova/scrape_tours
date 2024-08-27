@@ -56,7 +56,6 @@ def read(extracted_data):
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM events WHERE band=? AND city=? AND date=?", (band, city, date))
     rows = cursor.fetchall()
-    print(rows)
     return rows
 
 
@@ -64,7 +63,6 @@ if __name__ == "__main__":
     while True:
         scraped = scrape(URL)
         extracted = extract(scraped)
-        print(extracted)
         if extracted != "No upcoming tours":
             row = read(extracted)
             if not row:
