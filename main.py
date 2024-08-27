@@ -4,6 +4,7 @@ import requests
 import selectorlib
 import sqlite3
 import time
+import os
 
 
 URL = "https://programmer100.pythonanywhere.com/tours/"
@@ -29,9 +30,9 @@ def extract(source):
 def send_email(message):
     host = "smtp.gmail.com"
     port = 465
-    username = "hefano.mne@gmail.com"
-    password = "kgurxznhhdvkbujx"
-    receiver = "hefano.mne@gmail.com"
+    username = os.environ.get("USERNAME")
+    password = os.environ.get("PASSWORD")
+    receiver = os.environ.get("RECEIVER")
     context = ssl.create_default_context()
 
     with smtplib.SMTP_SSL(host, port, context=context) as server:
